@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from mysite.views import hello, my_homepage_view, current_datetime, hours_ahead, logged_in
+from mysite.views import another_page, hello, my_homepage_view, current_datetime, hours_ahead, logged_in
 
 from django.contrib import admin
 admin.autodiscover()
@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', my_homepage_view),
+    url(r'^another/page/$', another_page),
     url(r'^time/$', current_datetime),
     url(r'^time/plus/(\d{1,2})/$', hours_ahead),
     url(r'^login/$', logged_in),

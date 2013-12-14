@@ -21,6 +21,14 @@ def my_homepage_view(request):
 	
 	#return render(request, 'mypage_template.html', {'title': title, 'user_message': message})
 	
+def another_page(request):
+	title = "This is another page"
+	message = "No cookies were sent"
+	if "id" in request.COOKIES:
+		message = "We got a cookie!"
+
+	return render(request, 'mypage_template.html', {'title': title, 'user_message': message})
+
 
 def current_datetime(request):
 	now = datetime.datetime.now()
