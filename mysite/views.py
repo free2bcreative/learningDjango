@@ -1,6 +1,6 @@
 from django.shortcuts import render
-#from django.template.loader import get_template
-#from django.template import Context
+from django.template.loader import get_template
+from django.template import Context
 from django.http import HttpResponse, Http404
 import datetime
 
@@ -9,7 +9,17 @@ def hello(request):
 
 def my_homepage_view(request):
 	title = "This is my Home Page"
-	return render(request, 'mypage_template.html', {'title': title})
+	message = "Welcome First Time Users!"
+	if "id" in request.COOKIES:
+		message = "Welcome Back!"
+
+	t = get_template('mypage_template.html')
+	html = t.render(Context({'title': title, 'user_message': message}))
+	response = HttpResponse(html)
+	response.set_cookie("id", "123456789")
+	return response
+	
+	#return render(request, 'mypage_template.html', {'title': title, 'user_message': message})
 	
 
 def current_datetime(request):
